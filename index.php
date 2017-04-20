@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<script type="text/javascript" src="js.jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<title>Welcome to Chat Appk</title>
 	</head>
 	<body>
@@ -21,6 +21,16 @@
 				<tr>
 					<td></td><td><input type="submit" value="Log In" /></td>
 				</tr>
+				
+				<?php 
+
+				 ?>
+
+				 <tr>
+				 	<td></td><td><span style="color:red"> Error Login</span></td>
+				 </tr>
+
+
 			</table>
 			</form>
 		</div>
@@ -44,6 +54,18 @@
 				<tr>
 					<td></td><td><input type="submit" value="SignUp"></td>
 				</tr>
+
+				<?php 
+				if(isset($_GET['success'])){
+
+				 ?>
+					<tr>
+					<td></td><td><span style="color:green"> User Inserted </span></td>
+				</tr>
+				 <?php 
+				 }
+				  ?>
+				
 			</table>
 			</form>
 		</div>

@@ -46,6 +46,33 @@ class User{
 			'UserPassword' => $this->getUserPassword()
 			]); 
 	}
+
+	public function Userlogin(){
+		include "conn.php";
+		$req = $bdd->prepare("SELECT * FROM users WHERE UserMail=:UserMail AND UserPassword=:UserPassword"); 
+
+		$req->execute([
+			'UserMail' => $this->getUserMail(),
+			'UserPassword' => $this->getUserPassword()
+			]);
+		if($req->rowCount() ==0){
+			header("Location: ../index.php?error=1");
+			return false;
+		}else{
+			while($data= $req->fetch()){
+
+			$this->setUserId($data['UserId']);
+			$this->setUserName($data['UserName']);
+			$this->setUserPassword($data['UserPassword']);
+			$this->setUserMail($data['UserMail']);
+			header("Location: Home.php");
+			return true;
+
+					
+					
+			}
+		}
+	}
 } 
 
 /**
@@ -81,7 +108,7 @@ class Chat
 
 	public function InsertChatMessage(){
 		include "conn.php";
-		$req = $bbd->prepare("INSERT INTO chats(ChatUserId,ChatText)  Values(:ChatUserId,:ChatText)");
+		$req = $bbd->prepare("INSERT INTO chats(ChatUserId,ChatText)  Values (:ChatUserId,:ChatText)");
 
 			$req->execute([
 				'ChatUserId' => $this->getChatUserId(),

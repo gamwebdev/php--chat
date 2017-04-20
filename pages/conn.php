@@ -1,11 +1,11 @@
 <?php 
 
-	// Create connection
-$bbd=mysqli_connect("localhost","root","","chat");
+try {
+		$bdd = new PDO("mysql:host=localhost;dbname=chat","root","");
 
-// Check connection
-if (mysqli_connect_errno()) {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+} catch (Exception $e) {
+	die("Error: ". $e->getMessage());
 }
+	
 
 ?>
